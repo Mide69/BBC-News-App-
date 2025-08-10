@@ -1,4 +1,4 @@
-# BBC News App - DevOps Monitoring Project
+<img width="1905" height="1017" alt="Screenshot 2025-08-10 171357" src="https://github.com/user-attachments/assets/80d055aa-3206-497e-9d2b-97379864967f" /># BBC News App - DevOps Monitoring Project
 
 A complete DevOps implementation of a BBC-style news application with comprehensive monitoring using Node.js, Docker, Kubernetes, Prometheus, and Grafana.
 
@@ -52,6 +52,10 @@ This project demonstrates a full DevOps pipeline including:
 - Minikube or Kubernetes cluster
 - kubectl
 - Helm 3.x
+<img width="1910" height="1079" alt="Screenshot 2025-08-10 184307" src="https://github.com/user-attachments/assets/295479b0-c734-4bcf-b1da-8924000b7a2d" />
+
+  <img width="1905" height="1017" alt="Screenshot 2025-08-10 171357" src="https://github.com/user-attachments/assets/04371522-3660-4559-8230-316676f20eb7" />
+
 
 ### Local Development
 ```bash
