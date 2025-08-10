@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../BBC News App - server');
 
 describe('BBC News App', () => {
     describe('GET /', () => {
