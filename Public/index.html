@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBC News - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f8f8f8;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #bb1919, #d32f2f);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: -2px;
+            background: linear-gradient(45deg, #fff, #ffcccb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .breaking-banner {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            padding: 0.8rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border: 2px solid #ddd;
+            border-top-color: #bb1919;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(187, 25, 25, 0.9);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-headline {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .news-summary {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .timestamp {
+            background: #f0f0f0;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .status-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            z-index: 1000;
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #c62828;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">BBC</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#sport">Sport</a></li>
+                    <li><a href="#weather">Weather</a></li>
+                    <li><a href="#iplayer">iPlayer</a></li>
+                    <li><a href="#sounds">Sounds</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="breaking-banner">
+            🔴 LIVE: Breaking news updates from around the world
+        </div>
+        
+        <div id="loading" class="loading">Loading latest news...</div>
+        <div id="error" class="error-message" style="display: none;"></div>
+        
+        <div id="news-container" class="news-grid" style="display: none;"></div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 BBC News App - DevOps Monitoring Project | Built with Node.js, Docker & Kubernetes</p>
+    </footer>
+
+    <div class="status-bar" id="status">
+        🟢 System Online
+    </div>
+
+    <script>
+        async function fetchNews() {
+            try {
+                const response = await fetch('/api/news');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                displayNews(data.data);
+                document.getElementById('status').innerHTML = '🟢 Connected';
+            } catch (error) {
+                console.error('Error fetching news:', error);
+                showError('Failed to load news. Please check your connection.');
+                document.getElementById('status').innerHTML = '🔴 Connection Error';
+            }
+        }
+
+        function displayNews(newsItems) {
+            const container = document.getElementById('news-container');
+            const loading = document.getElementById('loading');
+            
+            loading.style.display = 'none';
+            container.style.display = 'grid';
+            
+            container.innerHTML = newsItems.map(item => `
+                <article class="news-card" onclick="viewArticle(${item.id})">
+                    <div class="news-image" style="background-image: url('${item.image}')">
+                        <span class="category-badge">${item.category}</span>
+                    </div>
+                    <div class="news-content">
+                        <h2 class="news-headline">${item.headline}</h2>
+                        <p class="news-summary">${item.summary}</p>
+                        <div class="news-meta">
+                            <span class="timestamp">${formatTime(item.timestamp)}</span>
+                            <span>📖 Read more</span>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            
+            if (diffHours < 1) return 'Just now';
+            if (diffHours < 24) return `${diffHours}h ago`;
+            return date.toLocaleDateString();
+        }
+
+        function viewArticle(id) {
+            alert(`Viewing article ${id}. In a full implementation, this would navigate to the article detail page.`);
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Health check
+        async function checkHealth() {
+            try {
+                const response = await fetch('/api/health');
+                if (response.ok) {
+                    document.getElementById('status').innerHTML = '🟢 System Healthy';
+                }
+            } catch (error) {
+                document.getElementById('status').innerHTML = '🔴 System Down';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchNews();
+            // Check health every 30 seconds
+            setInterval(checkHealth, 30000);
+        });
+
+        // Refresh news every 5 minutes
+        setInterval(fetchNews, 300000);
+    </script>
+</body>
+</html>
