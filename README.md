@@ -1,4 +1,4 @@
-<img width="1905" height="1017" alt="Screenshot 2025-08-10 171357" src="https://github.com/user-attachments/assets/80d055aa-3206-497e-9d2b-97379864967f" /># BBC News App - DevOps Monitoring Project
+# BBC News App - DevOps Monitoring Project
 
 A complete DevOps implementation of a BBC-style news application with comprehensive monitoring using Node.js, Docker, Kubernetes, Prometheus, and Grafana.
 
