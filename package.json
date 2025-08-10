@@ -2,10 +2,10 @@
   "name": "bbc-news-app",
   "version": "1.0.0",
   "description": "A BBC-style news application built with Node.js and Express",
-  "main": "server.js",
+  "main": "BBC News App - server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node \"BBC News App - server.js\"",
+    "dev": "nodemon \"BBC News App - server.js\"",
     "test": "jest",
     "test:watch": "jest --watch"
   },
